@@ -9,6 +9,7 @@ import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
 import me.fumba.stravafriends.common.ApplicationConstants;
+import me.fumba.stravafriends.services.StravaConnectionService;
 
 @ResultPath(value = "/")
 public class StravaFriendsConnectAction extends ActionSupport implements ApplicationConstants {
@@ -23,14 +24,9 @@ public class StravaFriendsConnectAction extends ActionSupport implements Applica
 			@Result(name = "input", location = "/index.jsp"), @Result(name = "error", location = "/error.jsp") })
 	@Override
 	public String execute() throws Exception {
-
-		// String result = ERROR;
-
-		// TODO if (pageName != null) {
+		StravaConnectionService stravaConnService = new StravaConnectionService();
+		//FIXME stravaConnService.connect();
 		return SUCCESS;
-		// }
-		// this.setErrorMessage("Failed");
-		// return result;
 	}
 
 	public String getName() {
