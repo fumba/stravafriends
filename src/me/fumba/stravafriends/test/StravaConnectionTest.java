@@ -14,7 +14,8 @@ public class StravaConnectionTest {
 	public void test() {
 
 		try {
-			StravaConnectionService stravaConnectionService = new StravaConnectionService();
+			//TODO 
+			StravaConnectionService stravaConnectionService = new StravaConnectionService("");
 			assertEquals(true, stravaConnectionService.connect());
 		} catch (NumberFormatException | IOException e) {
 		}

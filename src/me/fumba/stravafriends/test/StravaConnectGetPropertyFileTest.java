@@ -21,9 +21,6 @@ public class StravaConnectGetPropertyFileTest implements ApplicationConstants {
 			String clientSecret = stravaConnectGetPropertyFile.getPropValues(CLIENT_SECRET);
 			assertNotNull(clientSecret);
 
-			String authorisationCode = stravaConnectGetPropertyFile.getPropValues(AUTHORISATION_CODE);
-			assertNotNull(authorisationCode);
-
 		} catch (IOException e) {
 
 		}

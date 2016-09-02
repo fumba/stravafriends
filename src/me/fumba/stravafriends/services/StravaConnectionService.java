@@ -10,6 +10,7 @@
 package me.fumba.stravafriends.services;
 
 import java.io.IOException;
+import com.thoughtworks.xstream.XStream;
 
 import javastrava.api.v3.auth.AuthorisationService;
 import javastrava.api.v3.auth.impl.retrofit.AuthorisationServiceImpl;
@@ -25,22 +26,24 @@ public class StravaConnectionService implements ApplicationConstants {
 	private String clientSecret;
 	private String authorisationCode;
 	
-	public StravaConnectionService() throws NumberFormatException, IOException {
+	public StravaConnectionService(String  code) throws NumberFormatException, IOException {
 		StravaConnectGetPropertyFile properties = new StravaConnectGetPropertyFile();
 		this.applicationClientId = Integer.parseInt(properties.getPropValues(APPLICATION_CLIENT_ID));
 		this.clientSecret = properties.getPropValues(CLIENT_SECRET);
-		this.authorisationCode = properties.getPropValues(AUTHORISATION_CODE);
+		this.authorisationCode = code;
 	}
 
-	public boolean connect() {
+	public String connect() {
+		
 		AuthorisationService service = new AuthorisationServiceImpl();
 		Token token = service.tokenExchange(applicationClientId, clientSecret, authorisationCode);
 		Strava strava = new Strava(token);
 		
-		Integer id = null;
+		Integer id = token.getAthlete().getId();
 		StravaAthlete athlete = strava.getAthlete(id);
 		
-		return true;
+		XStream xstream = new XStream();
+		return xstream.toXML(athlete);
 	}
 
 }

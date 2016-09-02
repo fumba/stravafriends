@@ -12,8 +12,11 @@ public interface ApplicationConstants {
 
 	String CLIENT_SECRET = "clientSecret";
 
-	String AUTHORISATION_CODE = "authorisationCode";
-
 	String STRAVA_CONFIG_PROPERTIES = "stravaconfig.properties";
+	
+	//Page Names
+	String LANDING_PAGE = "landing";
+	
+	String CODE = "code";
 
 }

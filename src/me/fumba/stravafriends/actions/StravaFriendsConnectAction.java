@@ -1,12 +1,13 @@
 package me.fumba.stravafriends.actions;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+
+import java.util.Map;
+
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.ResultPath;
-
-import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
-import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
 import me.fumba.stravafriends.common.ApplicationConstants;
 import me.fumba.stravafriends.services.StravaConnectionService;
@@ -16,26 +17,19 @@ public class StravaFriendsConnectAction extends ActionSupport implements Applica
 
 	private static final long serialVersionUID = 4758878788148763637L;
 
-	private String name;
 	private String pageName;
 	private String errorMessage;
+	
+	private String tokenXML;
 
-	@Action(value = "hello", results = { @Result(name = "success", location = "/dashboard.jsp"),
+	@Action(value = "connect", results = { @Result(name = "success", location = "/dashboard.jsp"),
 			@Result(name = "input", location = "/index.jsp"), @Result(name = "error", location = "/error.jsp") })
 	@Override
 	public String execute() throws Exception {
-		StravaConnectionService stravaConnService = new StravaConnectionService();
-		//FIXME stravaConnService.connect();
+		Map<String, Object> parameters = ActionContext.getContext().getParameters();
+		StravaConnectionService stravaConnService = new StravaConnectionService( ((String[]) parameters.get(CODE))[0] );
+		this.setTokenXML(stravaConnService.connect());
 		return SUCCESS;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	@RequiredStringValidator(type = ValidatorType.FIELD, message = "Name must be provided.")
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getPageName() {
@@ -52,5 +46,13 @@ public class StravaFriendsConnectAction extends ActionSupport implements Applica
 
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
+	}
+
+	public String getTokenXML() {
+		return tokenXML;
+	}
+
+	public void setTokenXML(String tokenXML) {
+		this.tokenXML = tokenXML;
 	}
 }
