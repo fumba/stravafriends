@@ -7,6 +7,7 @@
 package me.fumba.stravafriends.actions;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,15 +41,18 @@ public class LoadApplicationAttributesAction extends ActionSupport implements Ap
 
 		HttpServletRequest request = ServletActionContext.getRequest();
 		StringBuffer requestUrl = request.getRequestURL();
+		
+		URL urlObj = new URL(requestUrl.toString());
+		String authority = urlObj.getAuthority();
 
 		StravaConnectGetPropertyFile propertyFile = new StravaConnectGetPropertyFile();
 		StringBuffer url = new StringBuffer("https://www.strava.com/oauth/authorize?");
 		url.append("client_id=");
 		url.append(propertyFile.getPropValues(APPLICATION_CLIENT_ID));
 		url.append("&response_type=code");
-		url.append("&redirect_uri=");
-		url.append(requestUrl);
-		url.append("/connect");
+		url.append("&redirect_uri=http://");
+		url.append(authority);
+		url.append("/stravafriends/connect");
 
 		// Strava API scopes:
 		// comma delimited string of ‘view_private’ and/or ‘write’, leave blank
