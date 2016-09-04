@@ -1,3 +1,9 @@
+/**
+ * Connects to strava service to retrieve athlete information. 
+ *
+ *  @author  <a href="http://fumba.me">Fumba Chibaka</a> 
+ */
+
 package me.fumba.stravafriends.actions;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -19,15 +25,15 @@ public class StravaFriendsConnectAction extends ActionSupport implements Applica
 
 	private String pageName;
 	private String errorMessage;
-	
+
 	private String tokenXML;
 
 	@Action(value = "connect", results = { @Result(name = "success", location = "/dashboard.jsp"),
-			@Result(name = "input", location = "/index.jsp"), @Result(name = "error", location = "/error.jsp") })
+			@Result(name = "error", location = "/error.jsp") })
 	@Override
 	public String execute() throws Exception {
 		Map<String, Object> parameters = ActionContext.getContext().getParameters();
-		StravaConnectionService stravaConnService = new StravaConnectionService( ((String[]) parameters.get(CODE))[0] );
+		StravaConnectionService stravaConnService = new StravaConnectionService(((String[]) parameters.get(CODE))[0]);
 		this.setTokenXML(stravaConnService.connect());
 		return SUCCESS;
 	}

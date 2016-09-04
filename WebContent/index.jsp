@@ -1,19 +1,43 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
-"http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<%@ include file="include/taglibs.jsp"%>
+
 <head>
 <title>Strava Friends</title>
+<%@ include file="include/header.jsp"%>
 </head>
+
 <body>
 
-	<s:a href="https://www.strava.com/oauth/authorize?client_id=13317&response_type=code&redirect_uri=http://localhost:8080/stravafriends/connect&scope=write&state=mystate&approval_prompt=force">
-		<img alt="Connect with Strava" src="assets/img/ConnectWithStrava.png" />
-	</s:a>
+	<s:action name="loadApplicationAttributes"></s:action>
 
+	<%@ include file="include/navigation.jsp"%>
 
-	
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">&nbsp;</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">Manage your strava friend list. Make new
+				workout friends from all over the world.</div>
+			<div class="col-sm-2"></div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12">&nbsp;</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+
+				<a href="${attr.StravaAppAuthorizationURL}"> <img
+					alt="Connect with Strava" src="assets/img/ConnectWithStrava.png" />
+				</a>
+
+			</div>
+			<div class="col-sm-2"></div>
+		</div>
+
+	</div>
+
 </body>
 </html>

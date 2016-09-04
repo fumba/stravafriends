@@ -18,5 +18,7 @@ public interface ApplicationConstants {
 	String LANDING_PAGE = "landing";
 	
 	String CODE = "code";
+	
+	String STRAVA_APP_AUTHORIZATION_URL = "StravaAppAuthorizationURL";
 
 }

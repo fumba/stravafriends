@@ -1,21 +1,31 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<html>
+<%@ include file="include/taglibs.jsp"%>
+
 <head>
-<title>Strava Friends</title>
+<title>Strava Friends - Dashboard</title>
+<%@ include file="include/header.jsp"%>
 </head>
+
 <body>
 
+	<%@ include file="include/navigation.jsp"%>
 
-	<s:property value="tokenXML" />
+	<div class="container">
+
+		<div class="row">
+			<div class="col-sm-12">&nbsp;</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+
+				<s:property value="tokenXML" />
+
+			</div>
+			<div class="col-sm-2"></div>
+		</div>
 
 
-
-	<%--    	<s:form action="connect" method="post">
-		<s:submit name="connect" type="image" value="Connect"
-			src="assets/img/ConnectWithStrava.png" />
-		<s:hidden name="pageName" value="landing" />
-	</s:form> --%>
+	</div>
 
 
 </body>
