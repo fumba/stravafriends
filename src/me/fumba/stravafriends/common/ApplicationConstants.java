@@ -20,5 +20,9 @@ public interface ApplicationConstants {
 	String CODE = "code";
 	
 	String STRAVA_APP_AUTHORIZATION_URL = "StravaAppAuthorizationURL";
+	
+	String LOGGED_IN = "loggedIn";
+	
+	String STRING_TRUE = "true";
 
 }

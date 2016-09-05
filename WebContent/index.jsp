@@ -1,4 +1,7 @@
 <%@ include file="include/taglibs.jsp"%>
+<%@ include file="include/connection_check.jsp" %>
+
+<s:action name="loadApplicationAttributes"></s:action>
 
 <head>
 <title>Strava Friends</title>
@@ -6,8 +9,6 @@
 </head>
 
 <body>
-
-	<s:action name="loadApplicationAttributes"></s:action>
 
 	<%@ include file="include/navigation.jsp"%>
 
@@ -40,4 +41,5 @@
 	</div>
 
 </body>
-</html>
+
+<%@ include file="include/footer.jsp"%>
