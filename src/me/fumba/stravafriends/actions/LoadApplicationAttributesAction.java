@@ -12,6 +12,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import com.opensymphony.xwork2.ActionContext;
@@ -41,7 +42,7 @@ public class LoadApplicationAttributesAction extends ActionSupport implements Ap
 
 		HttpServletRequest request = ServletActionContext.getRequest();
 		StringBuffer requestUrl = request.getRequestURL();
-		
+
 		URL urlObj = new URL(requestUrl.toString());
 		String authority = urlObj.getAuthority();
 
@@ -52,13 +53,18 @@ public class LoadApplicationAttributesAction extends ActionSupport implements Ap
 		url.append("&response_type=code");
 		url.append("&redirect_uri=http://");
 		url.append(authority);
-		url.append("/stravafriends/connect");
+
+		if (StringUtils.equals(urlObj.getHost(), "localhost")) {
+			url.append("/stravafriends/connect");
+		} else {
+			url.append("/connect");
+		}
 
 		// Strava API scopes:
 		// comma delimited string of ‘view_private’ and/or ‘write’, leave blank
 		// for read-only permissions.
 		url.append("&scope=view_private");
-		
+
 		url.append("&state=mystate");
 		url.append("&approval_prompt=force");
 		return url.toString();
