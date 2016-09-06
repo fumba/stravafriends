@@ -24,5 +24,7 @@ public interface ApplicationConstants {
 	String LOGGED_IN = "loggedIn";
 	
 	String STRING_TRUE = "true";
+	
+	String TOKEN = "token";
 
 }

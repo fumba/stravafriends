@@ -30,8 +30,8 @@ body { font-family: sans-serif; }
 
 .grid-item:hover {
   border-color: orange;
-  cursor: pointer;
-  background-color: #ffffcc;
+ /** cursor: pointer;
+  background-color: #ffffcc; **/
 }
 
 .grid-item--width2 { width: 320px; }

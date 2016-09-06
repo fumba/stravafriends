@@ -6,9 +6,6 @@
 <head>
 <title>Strava Friends</title>
 <%@ include file="include/header.jsp"%>
-</head>
-
-<body>
 
 	<%@ include file="include/navigation.jsp"%>
 

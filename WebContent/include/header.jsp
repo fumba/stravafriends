@@ -13,7 +13,12 @@
 <script
 	src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
 
+<script src="https://code.angularjs.org/1.2.9/angular.min.js"></script>
+
 <link rel="stylesheet" href="assets/css/style.css">
+
+<script
+	src="assets/js/stravafriendsscript.js"></script>
 
 <script>
 	(function(i, s, o, g, r, a, m) {
@@ -31,3 +36,7 @@
 	ga('create', 'UA-63691460-3', 'auto');
 	ga('send', 'pageview');
 </script>
+
+</head>
+
+<body data-ng-app="stravaFriendsApp"  data-ng-controller="globalController">

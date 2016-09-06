@@ -16,6 +16,8 @@ import javastrava.api.v3.service.Strava;
 
 import java.util.Map;
 
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.ResultPath;
@@ -35,21 +37,35 @@ public class StravaFriendsConnectAction extends ActionSupport implements Applica
 	private String tokenXML;
 	private StravaAthlete stravaAthlete;
 
+	private Integer notFollowingBackCount;
+
 	@Action(value = "connect", results = { @Result(name = "success", location = "/dashboard.jsp"),
-			@Result(name = "error", location = "/error.jsp") })
+			@Result(name = "error", location = "/error.jsp"), @Result(name = "login", location = "/index.jsp") })
 	@Override
 	public String execute() throws Exception {
 		Map<String, Object> session = ActionContext.getContext().getSession();
+
+		if (ActionContext.getContext().getParameters() == null) {
+			return LOGIN;
+		}
 		Map<String, Object> parameters = ActionContext.getContext().getParameters();
-		StravaConnectionService stravaConnService = new StravaConnectionService(((String[]) parameters.get(CODE))[0]);
+		String[] codeArray = ((String[]) parameters.get(CODE));
+		if (ArrayUtils.isEmpty(codeArray)) {
+			return LOGIN;
+		}
+		StravaConnectionService stravaConnService = new StravaConnectionService(codeArray[0]);
 
 		Token token = stravaConnService.connect();
 		session.put(LOGIN, STRING_TRUE);
 		session.put(CODE, stravaConnService.getAuthorisationCode());
+		session.put(TOKEN, token);
 
 		Strava strava = new Strava(token);
 		Integer id = token.getAthlete().getId();
 		this.setStravaAthlete(strava.getAthlete(id));
+
+		this.setNotFollowingBackCount(
+				this.getStravaAthlete().getFriendCount() - this.getStravaAthlete().getFollowerCount());
 
 		XStream xstream = new XStream();
 		this.setTokenXML(xstream.toXML(this.getStravaAthlete()));
@@ -62,6 +78,7 @@ public class StravaFriendsConnectAction extends ActionSupport implements Applica
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		session.remove(LOGIN);
 		session.remove(CODE);
+		session.remove(TOKEN);
 		return SUCCESS;
 	}
 
@@ -100,5 +117,13 @@ public class StravaFriendsConnectAction extends ActionSupport implements Applica
 	@Override
 	public void setSession(Map<String, Object> session) {
 
+	}
+
+	public Integer getNotFollowingBackCount() {
+		return notFollowingBackCount;
+	}
+
+	public void setNotFollowingBackCount(Integer notFollowingBackCount) {
+		this.notFollowingBackCount = notFollowingBackCount;
 	}
 }
