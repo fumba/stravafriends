@@ -6,7 +6,7 @@
 package me.fumba.stravafriends.actions;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.convention.annotation.Action;
@@ -62,13 +62,16 @@ public class LocateFriendsAction extends ActionSupport implements ApplicationCon
 
 		Strava strava = new Strava(token);
 		StravaAthlete authenticatedAthlete = strava.getAuthenticatedAthlete();
-		Map<String, String> locationMap = new HashMap<String, String>();
-		for (StravaAthlete friend : strava.listAllAthleteFriends(authenticatedAthlete.getId())) {
-			locationMap.put(friend.getCity(), friend.getCountry());
+		List<StravaAthlete> friendList = strava.listAllAthleteFriends(authenticatedAthlete.getId());
+		String[][] locationList = new String[friendList.size()][2];
+		int index = 0;
+		for (StravaAthlete friend : friendList) {
+			locationList[index][0] = friend.getCity();
+			locationList[index++][1] = friend.getCountry();
 		}
 
 		Gson gson = new GsonBuilder().create();
-		this.setFriendLocations(gson.toJson(locationMap));
+		this.setFriendLocations(gson.toJson(locationList));
 		return SUCCESS;
 	}
 

@@ -17,7 +17,7 @@ function initialize() {
 	};
 	map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 	var cityList = JSON.parse(cityListJSON);
-
+	
 	for (var i = 0; i < cityList.length; i++) {
 		var address = cityList[i][0] + ', ' + cityList[i][1];
 		codeAddress(address);
