@@ -38,9 +38,13 @@ public class DashboardAction extends ActionSupport implements ApplicationConstan
 	private String tokenXML;
 	private StravaAthlete authenticatedAthlete;
 
-	private Integer notFollowingBackCount;
+	private int notFollowingBackCount;
 
-	private Integer notFriendedBackCount;
+	private int notFriendedBackCount;
+
+	private int mutualClubs;
+
+	private int suggestedClubs;
 
 	@Action(value = "connect", results = { @Result(name = "success", location = "/dashboard.jsp"),
 			@Result(name = "error", location = "/error.jsp"), @Result(name = "login", location = "/index.jsp") })
@@ -64,7 +68,7 @@ public class DashboardAction extends ActionSupport implements ApplicationConstan
 		session.put(TOKEN, token);
 
 		Strava strava = new Strava(token);
-		
+
 		this.authenticatedAthlete = strava.getAuthenticatedAthlete();
 
 		List<StravaAthlete> followingList = strava.listAllAthleteFriends(authenticatedAthlete.getId());
@@ -115,7 +119,7 @@ public class DashboardAction extends ActionSupport implements ApplicationConstan
 
 	}
 
-	public Integer getNotFollowingBackCount() {
+	public int getNotFollowingBackCount() {
 		return notFollowingBackCount;
 	}
 
@@ -131,11 +135,27 @@ public class DashboardAction extends ActionSupport implements ApplicationConstan
 		this.authenticatedAthlete = authenticatedAthlete;
 	}
 
-	public Integer getNotFriendedBackCount() {
+	public int getNotFriendedBackCount() {
 		return notFriendedBackCount;
 	}
 
 	public void setNotFriendedBackCount(Integer notFriendedBackCount) {
 		this.notFriendedBackCount = notFriendedBackCount;
+	}
+
+	public int getMutualClubs() {
+		return mutualClubs;
+	}
+
+	public void setMutualClubs(int mutualClubs) {
+		this.mutualClubs = mutualClubs;
+	}
+
+	public int getSuggestedClubs() {
+		return suggestedClubs;
+	}
+
+	public void setSuggestedClubs(int suggestedClubs) {
+		this.suggestedClubs = suggestedClubs;
 	}
 }

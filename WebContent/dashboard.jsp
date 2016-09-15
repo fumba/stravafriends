@@ -52,7 +52,13 @@
 				<div class="grid-item grid-item--width2 grid-item--height2"></div>
 
 				<div class="grid-item grid-item--width2 grid-item--height2">
-					<h4>Shared Clubs</h4>
+					<h4>Clubs</h4>
+					Mutual Clubs:
+					<s:property value="mutualClubs" />
+					<br><a href="#">view detailed info</a><br><br>
+					Suggested Clubs (subscribed by friends):
+					<s:property value="suggestedClubs" />
+					<br><a href="#">view detailed info</a><br>
 				</div>
 
 			</div>

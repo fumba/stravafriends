@@ -17,7 +17,7 @@ app
 										.success(
 												function(data, status, headers,
 														config) {
-													$scope.data.athletes = data.athletesNotFollowingBack;
+													$scope.athletes = data.athletesNotFollowingBack;
 												}).error(
 												function(data, status, headers,
 														config) {
@@ -41,7 +41,7 @@ app
 										.success(
 												function(data, status, headers,
 														config) {
-													$scope.data.athletes = data.athletesNotFriendedBack;
+													$scope.athletes = data.athletesNotFriendedBack;
 												}).error(
 												function(data, status, headers,
 														config) {
