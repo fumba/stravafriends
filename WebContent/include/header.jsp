@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="assets/css/style.css">
 
 <script
-	src="assets/js/stravafriendsscript.js"></script>
+	src="assets/js/ng_script.js"></script>
 
 <script>
 	(function(i, s, o, g, r, a, m) {

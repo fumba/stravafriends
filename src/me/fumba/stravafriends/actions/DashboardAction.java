@@ -14,20 +14,21 @@ import javastrava.api.v3.auth.model.Token;
 import javastrava.api.v3.model.StravaAthlete;
 import javastrava.api.v3.service.Strava;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.ResultPath;
 import org.apache.struts2.interceptor.SessionAware;
 
 import me.fumba.stravafriends.common.ApplicationConstants;
+import me.fumba.stravafriends.common.StravaFriendsAppUtils;
 import me.fumba.stravafriends.services.StravaConnectionService;
 
 @ResultPath(value = "/")
-public class StravaFriendsConnectAction extends ActionSupport implements ApplicationConstants, SessionAware {
+public class DashboardAction extends ActionSupport implements ApplicationConstants, SessionAware {
 
 	private static final long serialVersionUID = 4758878788148763637L;
 
@@ -35,9 +36,11 @@ public class StravaFriendsConnectAction extends ActionSupport implements Applica
 	private String errorMessage;
 
 	private String tokenXML;
-	private StravaAthlete stravaAthlete;
+	private StravaAthlete authenticatedAthlete;
 
 	private Integer notFollowingBackCount;
+
+	private Integer notFriendedBackCount;
 
 	@Action(value = "connect", results = { @Result(name = "success", location = "/dashboard.jsp"),
 			@Result(name = "error", location = "/error.jsp"), @Result(name = "login", location = "/index.jsp") })
@@ -61,14 +64,15 @@ public class StravaFriendsConnectAction extends ActionSupport implements Applica
 		session.put(TOKEN, token);
 
 		Strava strava = new Strava(token);
-		Integer id = token.getAthlete().getId();
-		this.setStravaAthlete(strava.getAthlete(id));
+		
+		this.authenticatedAthlete = strava.getAuthenticatedAthlete();
 
-		this.setNotFollowingBackCount(
-				this.getStravaAthlete().getFriendCount() - this.getStravaAthlete().getFollowerCount());
+		List<StravaAthlete> followingList = strava.listAllAthleteFriends(authenticatedAthlete.getId());
+		this.setNotFollowingBackCount(StravaFriendsAppUtils.retrieveAthletesNotFollowingBack(followingList).size());
+		this.setNotFriendedBackCount(StravaFriendsAppUtils.retrieveAthletesNotFriendedBack(followingList).size());
 
 		XStream xstream = new XStream();
-		this.setTokenXML(xstream.toXML(this.getStravaAthlete()));
+		this.setTokenXML(xstream.toXML(this.authenticatedAthlete));
 		return SUCCESS;
 	}
 
@@ -106,14 +110,6 @@ public class StravaFriendsConnectAction extends ActionSupport implements Applica
 		this.tokenXML = tokenXML;
 	}
 
-	public StravaAthlete getStravaAthlete() {
-		return stravaAthlete;
-	}
-
-	public void setStravaAthlete(StravaAthlete stravaAthlete) {
-		this.stravaAthlete = stravaAthlete;
-	}
-
 	@Override
 	public void setSession(Map<String, Object> session) {
 
@@ -125,5 +121,21 @@ public class StravaFriendsConnectAction extends ActionSupport implements Applica
 
 	public void setNotFollowingBackCount(Integer notFollowingBackCount) {
 		this.notFollowingBackCount = notFollowingBackCount;
+	}
+
+	public StravaAthlete getAuthenticatedAthlete() {
+		return authenticatedAthlete;
+	}
+
+	public void setAuthenticatedAthlete(StravaAthlete authenticatedAthlete) {
+		this.authenticatedAthlete = authenticatedAthlete;
+	}
+
+	public Integer getNotFriendedBackCount() {
+		return notFriendedBackCount;
+	}
+
+	public void setNotFriendedBackCount(Integer notFriendedBackCount) {
+		this.notFriendedBackCount = notFriendedBackCount;
 	}
 }

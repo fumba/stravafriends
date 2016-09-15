@@ -19,7 +19,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import me.fumba.stravafriends.common.ApplicationConstants;
-import me.fumba.stravafriends.common.StravaConnectGetPropertyFile;
+import me.fumba.stravafriends.common.StravaConnectPropertyFile;
 
 public class LoadApplicationAttributesAction extends ActionSupport implements ApplicationConstants {
 
@@ -46,7 +46,7 @@ public class LoadApplicationAttributesAction extends ActionSupport implements Ap
 		URL urlObj = new URL(requestUrl.toString());
 		String authority = urlObj.getAuthority();
 
-		StravaConnectGetPropertyFile propertyFile = new StravaConnectGetPropertyFile();
+		StravaConnectPropertyFile propertyFile = new StravaConnectPropertyFile();
 		StringBuffer url = new StringBuffer("https://www.strava.com/oauth/authorize?");
 		url.append("client_id=");
 		url.append(propertyFile.getPropValues(APPLICATION_CLIENT_ID));

@@ -2,3 +2,5 @@ strava
 href
 chibaka
 oauth
+angularjs
+friended

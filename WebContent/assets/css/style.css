@@ -1,8 +1,12 @@
 @CHARSET "ISO-8859-1";
 
-* { box-sizing: border-box; }
+* {
+	box-sizing: border-box;
+}
 
-body { font-family: sans-serif; }
+body {
+	font-family: sans-serif;
+}
 
 /* ---- grid ---- */
 .grid {
@@ -11,52 +15,97 @@ body { font-family: sans-serif; }
 
 /* clearfix */
 .grid:after {
-  content: '';
-  display: block;
-  clear: both;
+	content: '';
+	display: block;
+	clear: both;
 }
 
 /* ---- grid-item ---- */
-
 .grid-item {
-  width: 160px;
-  height: 120px;
-  float: left;
-  border: 2px solid #333;
-  border-color: hsla(0, 0%, 0%, 0.5);
-  border-radius: 5px;
-  margin-bottom: 10px;
+	width: 160px;
+	height: 120px;
+	float: left;
+	border: 2px solid #333;
+	border-color: hsla(0, 0%, 0%, 0.5);
+	border-radius: 5px;
+	margin-bottom: 10px;
 }
 
 .grid-item:hover {
-  border-color: orange;
- /** cursor: pointer;
+	border-color: orange;
+	/** cursor: pointer;
   background-color: #ffffcc; **/
 }
 
-.grid-item--width2 { width: 320px; }
-.grid-item--width3 { width: 480px; }
-.grid-item--width4 { width: 640px; }
+.grid-item--width2 {
+	width: 320px;
+}
 
-.grid-item--height2 { height: 200px; }
-.grid-item--height3 { height: 260px; }
-.grid-item--height4 { height: 360px; }
+.grid-item--width3 {
+	width: 480px;
+}
+
+.grid-item--width4 {
+	width: 640px;
+}
+
+.grid-item--height2 {
+	height: 200px;
+}
+
+.grid-item--height3 {
+	height: 260px;
+}
+
+.grid-item--height4 {
+	height: 360px;
+}
 
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+	position: relative;
+	min-height: 100%;
 }
+
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+	/* Margin bottom by footer height */
+	margin-bottom: 60px;
 }
+
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #f5f5f5;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 60px;
+	background-color: #f5f5f5;
+}
+
+table.imagetable {
+	color: #333333;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+}
+
+table.imagetable th {
+	background: #b5cfd2 url('cell-blue.jpg');
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #999999;
+}
+
+table.imagetable td {
+	background: #dcddc0 url('cell-grey.jpg');
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #999999;
+}
+
+#map_canvas {
+	background-color: gray;
+	border: 1px solid black;
 }

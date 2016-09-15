@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class StravaConnectGetPropertyFile implements ApplicationConstants {
+public class StravaConnectPropertyFile implements ApplicationConstants {
 
 	public String getPropValues(String key) throws IOException {
 		Properties prop = new Properties();

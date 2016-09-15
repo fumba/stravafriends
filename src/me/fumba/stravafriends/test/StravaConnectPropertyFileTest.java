@@ -7,13 +7,13 @@ import java.io.IOException;
 import org.junit.Test;
 
 import me.fumba.stravafriends.common.ApplicationConstants;
-import me.fumba.stravafriends.common.StravaConnectGetPropertyFile;
+import me.fumba.stravafriends.common.StravaConnectPropertyFile;
 
-public class StravaConnectGetPropertyFileTest implements ApplicationConstants {
+public class StravaConnectPropertyFileTest implements ApplicationConstants {
 
 	@Test
 	public void retrievePropertiesFile() {
-		StravaConnectGetPropertyFile stravaConnectGetPropertyFile = new StravaConnectGetPropertyFile();
+		StravaConnectPropertyFile stravaConnectGetPropertyFile = new StravaConnectPropertyFile();
 		try {
 			String applicationClientId = stravaConnectGetPropertyFile.getPropValues(APPLICATION_CLIENT_ID);
 			assertNotNull(applicationClientId);
