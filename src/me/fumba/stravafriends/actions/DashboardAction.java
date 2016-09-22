@@ -8,7 +8,6 @@ package me.fumba.stravafriends.actions;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import com.thoughtworks.xstream.XStream;
 
 import javastrava.api.v3.auth.model.Token;
 import javastrava.api.v3.model.StravaAthlete;
@@ -39,11 +38,8 @@ public class DashboardAction extends ActionSupport implements ApplicationConstan
 	private StravaAthlete authenticatedAthlete;
 
 	private int notFollowingBackCount;
-
 	private int notFriendedBackCount;
-
 	private int mutualClubs;
-
 	private int suggestedClubs;
 
 	@Action(value = "connect", results = { @Result(name = "success", location = "/dashboard.jsp"),
@@ -71,12 +67,12 @@ public class DashboardAction extends ActionSupport implements ApplicationConstan
 
 		this.authenticatedAthlete = strava.getAuthenticatedAthlete();
 
-		List<StravaAthlete> followingList = strava.listAllAthleteFriends(authenticatedAthlete.getId());
+		List<StravaAthlete> followingList = strava.listAllAthleteFriends(this.authenticatedAthlete.getId());
 		this.setNotFollowingBackCount(StravaFriendsAppUtils.retrieveAthletesNotFollowingBack(followingList).size());
 		this.setNotFriendedBackCount(StravaFriendsAppUtils.retrieveAthletesNotFriendedBack(followingList).size());
 
-		XStream xstream = new XStream();
-		this.setTokenXML(xstream.toXML(this.authenticatedAthlete));
+		this.setMutualClubs(StravaFriendsAppUtils
+				.retrieveMutualClubs(session, this.authenticatedAthlete, followingList, strava).size());
 		return SUCCESS;
 	}
 

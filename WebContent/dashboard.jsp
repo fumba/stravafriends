@@ -1,10 +1,10 @@
 <%@ include file="include/taglibs.jsp"%>
+
 <%@ include file="include/connection_check.jsp"%>
 
 <head>
 <title>Strava Friends - Dashboard</title>
 <%@ include file="include/header.jsp"%>
-
 <%@ include file="include/navigation.jsp"%>
 
 <div class="container">
@@ -41,24 +41,27 @@
 					&nbsp;<a href="loadNotFriendedBack.action">view</a><br> --%>
 				</div>
 
-				<div class="grid-item grid-item--width2 grid-item--height2"></div>
+				<div class="grid-item grid-item--width2 grid-item--height2">
+					<h4>Run Leaderboard</h4>
+					<a href="runLeaderboard.action">Open Tool</a><br>
+				</div>
 
 				<div class="grid-item grid-item--width2 grid-item--height2">
 					<h4>Friend Locations</h4>
-					<a href="friendLocationList.action">Show List</a><br>
-					<a href="friendLocationMap.action">View on map</a><br>
+					<a href="friendLocationList.action">View as List</a><br> <a
+						href="friendLocationMap.action">View on map</a><br>
 				</div>
 
-				<div class="grid-item grid-item--width2 grid-item--height2"></div>
+				<div class="grid-item grid-item--width2 grid-item--height2">
+					<h4>Bike Leaderboard</h4>
+					<a href="bikeLeaderboard.action">Open Tool</a><br>
+				</div>
 
 				<div class="grid-item grid-item--width2 grid-item--height2">
 					<h4>Clubs</h4>
 					Mutual Clubs:
 					<s:property value="mutualClubs" />
-					<br><a href="#">view detailed info</a><br><br>
-					Suggested Clubs (subscribed by friends):
-					<s:property value="suggestedClubs" />
-					<br><a href="#">view detailed info</a><br>
+					<br> <a href="mutualClubs.action">view detailed info</a><br>
 				</div>
 
 			</div>

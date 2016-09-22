@@ -6,10 +6,14 @@
 package me.fumba.stravafriends.common;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javastrava.api.v3.model.StravaAthlete;
+import javastrava.api.v3.model.StravaClub;
 import javastrava.api.v3.model.reference.StravaFollowerState;
+import javastrava.api.v3.service.Strava;
 
 public class StravaFriendsAppUtils {
 
@@ -44,5 +48,41 @@ public class StravaFriendsAppUtils {
 			}
 		}
 		return notFollowedList;
+	}
+
+	/**
+	 * Extracts mutual clubs between the authenticated user and their follower
+	 * list.
+	 * 
+	 * @param session
+	 * 
+	 * @param authenticatedAthlete
+	 * @param followingList
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public static Map<StravaClub, ArrayList<StravaAthlete>> retrieveMutualClubs(Map<String, Object> session,
+			StravaAthlete authenticatedAthlete, List<StravaAthlete> followingList, Strava strava) {
+		if (session.get("mutualClubs") != null) {
+			return (Map<StravaClub, ArrayList<StravaAthlete>>) session.get("mutualClubs");
+		}
+		Map<StravaClub, ArrayList<StravaAthlete>> mutualClubHashMap = new HashMap<StravaClub, ArrayList<StravaAthlete>>();
+
+		ArrayList<StravaAthlete> matchedClubMembersList = null;
+		if (authenticatedAthlete.getClubs() != null) {
+			for (StravaClub authUserClub : authenticatedAthlete.getClubs()) {
+				matchedClubMembersList = new ArrayList<StravaAthlete>();
+				for (StravaAthlete authUserClubMember : strava.listAllClubMembers(authUserClub.getId())) {
+					for (StravaAthlete follower : followingList) {
+						if (follower.getId().equals(authUserClubMember.getId())) {
+							matchedClubMembersList.add(follower);
+							mutualClubHashMap.put(authUserClub, matchedClubMembersList);
+						}
+					}
+				}
+			}
+		}
+		session.put("mutualClubs", mutualClubHashMap);
+		return mutualClubHashMap;
 	}
 }
