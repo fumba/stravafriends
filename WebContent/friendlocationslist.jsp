@@ -4,26 +4,39 @@
 <head>
 <title>Strava Friends - Friend Locations</title>
 <%@ include file="include/header.jsp"%>
-</head>
+<%@ include file="include/navigation.jsp"%>
 
-<body>
+<script>
+	$(document).ready(function() {
+		$('#friendLocationsDatatable').DataTable({
+			"columnDefs" : [ {
+				"targets" : 'nonsortable',
+				"sortable" : false
+			} ]
+		});
+	});
+</script>
 
-	<%@ include file="include/navigation.jsp"%>
+<div class="container">
+	<div class="row">
 
-	<div class="container">
-		<div class="row">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-8">
 
-			<div class="col-sm-2"></div>
-			<div class="col-sm-8">
+			<table class="table table-striped table-bordered"
+				id="friendLocationsDatatable">
 
-				<table class="imagetable">
+				<thead>
 					<tr>
-						<th></th>
+						<th>Athlete Name</th>
 						<th>City</th>
 						<th>State</th>
 						<th>Country</th>
-						<th></th>
+						<th class="nonsortable"></th>
 					</tr>
+				</thead>
+
+				<tbody>
 					<s:iterator value="friends">
 						<tr>
 							<td><s:property value="firstname" /> <s:property
@@ -36,15 +49,14 @@
 
 						</tr>
 					</s:iterator>
-				</table>
-
-			</div>
-			<div class="col-sm-2"></div>
+			</table>
 
 		</div>
-	</div>
-	<!-- container -->
+		<div class="col-sm-2"></div>
 
+	</div>
+</div>
+<!-- container -->
 </body>
 
 <%@ include file="include/footer.jsp"%>

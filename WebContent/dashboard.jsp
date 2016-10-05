@@ -47,14 +47,14 @@
 				</div>
 
 				<div class="grid-item grid-item--width2 grid-item--height2">
-					<h4>Run Leaderboard</h4>
-					<a href="runLeaderboard.action">Open Tool</a><br>
-				</div>
-
-				<div class="grid-item grid-item--width2 grid-item--height2">
 					<h4>Friend Locations</h4>
 					<a href="friendLocationList.action">View as List</a><br> <a
 						href="friendLocationMap.action">View on map</a><br>
+				</div>
+
+				<div class="grid-item grid-item--width2 grid-item--height2">
+					<h4>Run Leaderboard</h4>
+					<a href="runLeaderboard.action">Open Tool</a><br>
 				</div>
 
 				<div class="grid-item grid-item--width2 grid-item--height2">

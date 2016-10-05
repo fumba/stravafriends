@@ -9,9 +9,7 @@
 <script>
 	$(document).ready(function() {
 		$('#bikeLeaderBoardTable').DataTable({
-
 			"order" : [ [ 1, "desc" ] ],
-
 			"columnDefs" : [ {
 				"targets" : 'nonsortable',
 				"sortable" : false
@@ -43,7 +41,7 @@
 						<tr>
 							<td><s:property value="value.athlete.firstname" /> <s:property
 									value="value.athlete.lastname" /></td>
-							<td><s:property value="key" /></td>
+							<td><s:property value="value.distance" /></td>
 							<td><img class="img-responsive table_image"
 								src='<s:property value="value.athlete.profile" />' alt=""></td>
 

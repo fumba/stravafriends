@@ -79,13 +79,10 @@ body {
 	width: 100%;
 	/* Set the fixed height of the footer here */
 	height: 60px;
-	background-color: #f5f5f5;
+	background-color: black;
+	margin-bottom: 10px;
 }
 
-.table_image {
-	height: 60px;
-	width: 60px;
-}
 
 #map_canvas {
 	background-color: gray;

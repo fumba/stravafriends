@@ -64,11 +64,7 @@
 			<a href="${attr.StravaAppAuthorizationURL}"> <img
 				alt="Connect with Strava" src="assets/img/ConnectWithStrava.png" />
 			</a> <br> <br>
-			<br> <span class="glyphicon glyphicon-envelope"
-				aria-hidden="true"></span> <a
-				href="mailto:fumba.me@gmail.com?Subject=Strava%20Friends%20Feedback"
-				target="_top">fumba.me@gmail.com</a> - Let me know about your ideas,
-			comments, opinions,... <br> <br>
+			<br> 
 		</div>
 		<div class="col-sm-2"></div>
 	</div>

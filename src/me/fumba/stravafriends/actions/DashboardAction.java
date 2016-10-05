@@ -81,6 +81,7 @@ public class DashboardAction extends ActionSupport implements ApplicationConstan
 		session.remove(LOGIN);
 		session.remove(CODE);
 		session.remove(TOKEN);
+		session.remove("mutualClubs");
 		return SUCCESS;
 	}
 

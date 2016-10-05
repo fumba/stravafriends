@@ -83,12 +83,9 @@ public class StravaFriendsAppUtils {
 	public static HashMap<Integer, LeaderboardResult> getLeaderboardData(Token token,
 			StravaActivityType stravaActivityType) {
 		Strava strava = new Strava(token);
-		List<StravaActivity> authenticatedUserActivities = strava.listAllAuthenticatedAthleteActivities();
 		List<StravaActivity> friendActivities = strava.listAllFriendsActivities();
-		// collect all activities
-		authenticatedUserActivities.addAll(friendActivities);
 		HashMap<Integer, LeaderboardResult> runActivitiesMap = new HashMap<Integer, LeaderboardResult>();
-		for (StravaActivity activity : authenticatedUserActivities) {
+		for (StravaActivity activity : friendActivities) {
 			if (activity.getType() == stravaActivityType) {
 				if (runActivitiesMap.get(activity.getAthlete().getId()) == null) {
 					LeaderboardResult result = new LeaderboardResult();

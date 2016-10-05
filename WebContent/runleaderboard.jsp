@@ -39,11 +39,11 @@
 				</thead>
 
 				<tbody>
-					<s:iterator value="runActivitiesMap">
+					<s:iterator value="runActivitiesMap" status="incr">
 						<tr>
 							<td><s:property value="value.athlete.firstname" /> <s:property
 									value="value.athlete.lastname" /></td>
-							<td><s:property value="key" /></td>
+							<td><s:property value="value.distance" /></td>
 							<td><img class="img-responsive table_image"
 								src='<s:property value="value.athlete.profile" />' alt=""></td>
 

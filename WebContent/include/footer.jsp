@@ -1,10 +1,12 @@
 
 <footer class="footer">
 	<div class="container">
-		<p class="text-muted" style="margin-top: 10px;">
-			<a href="http://fumba.me/"><span
-				class="glyphicon glyphicon-globe"></span> &nbsp; www.fumba.me</a>
-		</p>
+		<br> <span class="glyphicon glyphicon-envelope"
+			aria-hidden="true"></span> <a
+			href="mailto:fumba.me@gmail.com?Subject=Strava%20Friends%20Feedback"
+			target="_top">fumba.me@gmail.com</a><br> <span
+			class="glyphicon glyphicon-globe"></span><a href="http://fumba.me/">
+			www.fumba.me</a>
 	</div>
 </footer>
 
