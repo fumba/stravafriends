@@ -38,7 +38,6 @@ public class DashboardAction extends ActionSupport implements ApplicationConstan
 	private StravaAthlete authenticatedAthlete;
 
 	private int notFollowingBackCount;
-	private int notFriendedBackCount;
 	private int mutualClubs;
 	private int suggestedClubs;
 
@@ -69,7 +68,6 @@ public class DashboardAction extends ActionSupport implements ApplicationConstan
 
 		List<StravaAthlete> followingList = strava.listAllAthleteFriends(this.authenticatedAthlete.getId());
 		this.setNotFollowingBackCount(StravaFriendsAppUtils.retrieveAthletesNotFollowingBack(followingList).size());
-		this.setNotFriendedBackCount(StravaFriendsAppUtils.retrieveAthletesNotFriendedBack(followingList).size());
 
 		this.setMutualClubs(StravaFriendsAppUtils
 				.retrieveMutualClubs(session, this.authenticatedAthlete, followingList, strava).size());
@@ -129,14 +127,6 @@ public class DashboardAction extends ActionSupport implements ApplicationConstan
 
 	public void setAuthenticatedAthlete(StravaAthlete authenticatedAthlete) {
 		this.authenticatedAthlete = authenticatedAthlete;
-	}
-
-	public int getNotFriendedBackCount() {
-		return notFriendedBackCount;
-	}
-
-	public void setNotFriendedBackCount(Integer notFriendedBackCount) {
-		this.notFriendedBackCount = notFriendedBackCount;
 	}
 
 	public int getMutualClubs() {

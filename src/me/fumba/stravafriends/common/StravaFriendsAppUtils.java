@@ -10,8 +10,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javastrava.api.v3.auth.model.Token;
+import javastrava.api.v3.model.StravaActivity;
 import javastrava.api.v3.model.StravaAthlete;
 import javastrava.api.v3.model.StravaClub;
+import javastrava.api.v3.model.reference.StravaActivityType;
 import javastrava.api.v3.model.reference.StravaFollowerState;
 import javastrava.api.v3.service.Strava;
 
@@ -32,22 +35,6 @@ public class StravaFriendsAppUtils {
 			}
 		}
 		return nonFollowerList;
-	}
-
-	/**
-	 * Extracts the list of athletes that the authenticated user does not follow
-	 * back.
-	 */
-	public static ArrayList<StravaAthlete> retrieveAthletesNotFriendedBack(List<StravaAthlete> followedList) {
-		// Retrieve athletes that the authenticated user follows but they do not
-		// follow back
-		ArrayList<StravaAthlete> notFollowedList = new ArrayList<StravaAthlete>();
-		for (StravaAthlete friend : followedList) {
-			if (friend.getFriend() != StravaFollowerState.ACCEPTED) {
-				notFollowedList.add(friend);
-			}
-		}
-		return notFollowedList;
 	}
 
 	/**
@@ -85,4 +72,47 @@ public class StravaFriendsAppUtils {
 		session.put("mutualClubs", mutualClubHashMap);
 		return mutualClubHashMap;
 	}
+
+	/**
+	 * Extracts the leadership board values for the activity that is specified.
+	 * 
+	 * @param strava
+	 * @param authenticatedUserActivities
+	 * @return
+	 */
+	public static HashMap<Integer, LeaderboardResult> getLeaderboardData(Token token,
+			StravaActivityType stravaActivityType) {
+		Strava strava = new Strava(token);
+		List<StravaActivity> authenticatedUserActivities = strava.listAllAuthenticatedAthleteActivities();
+		List<StravaActivity> friendActivities = strava.listAllFriendsActivities();
+		// collect all activities
+		authenticatedUserActivities.addAll(friendActivities);
+		HashMap<Integer, LeaderboardResult> runActivitiesMap = new HashMap<Integer, LeaderboardResult>();
+		for (StravaActivity activity : authenticatedUserActivities) {
+			if (activity.getType() == stravaActivityType) {
+				if (runActivitiesMap.get(activity.getAthlete().getId()) == null) {
+					LeaderboardResult result = new LeaderboardResult();
+					result.setDistance(convertMetersToMiles(activity.getDistance()));
+					result.setAthlete(strava.getAthlete(activity.getAthlete().getId()));
+					runActivitiesMap.put(activity.getAthlete().getId(), result);
+				} else {
+					LeaderboardResult result = runActivitiesMap.get(activity.getAthlete().getId());
+					result.setDistance(result.getDistance() + convertMetersToMiles(activity.getDistance()));
+					runActivitiesMap.put(activity.getAthlete().getId(), result);
+				}
+			}
+		}
+		return runActivitiesMap;
+	}
+
+	/**
+	 * Converts meters to miles.
+	 * 
+	 * @param meters
+	 * @return
+	 */
+	public static float convertMetersToMiles(Float meters) {
+		return (float) (meters / 1609.344);
+	}
+
 }

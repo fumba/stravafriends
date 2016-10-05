@@ -14,11 +14,16 @@
 			<div class="grid">
 
 				<div class="grid-item grid-item--width2 grid-item--height2">
-					<h4>Your Profile information</h4>
-					<s:property value="authenticatedAthlete.firstname" />
-					&nbsp;
-					<s:property value="authenticatedAthlete.lastname" />
-					<br>
+					<h4>
+						<s:property value="authenticatedAthlete.firstname" />
+						&nbsp;
+						<s:property value="authenticatedAthlete.lastname" />
+					</h4>
+
+					<img class="img-responsive" height="200px"
+						src='<s:property value="authenticatedAthlete.profile" />'
+						alt="Profile Picture">
+
 					<s:property value="authenticatedAthlete.city" />
 					,
 					<s:property value="authenticatedAthlete.state" />
