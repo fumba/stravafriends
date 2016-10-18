@@ -36,7 +36,7 @@
 								<table class="imagetable">
 									<s:iterator value="value">
 										<tr>
-											<td><a
+											<td>-<a
 												href='https://www.strava.com/athletes/<s:property value="id"/>'
 												target="_blank"><s:property value="firstname" /> <s:property
 														value="lastname" /></a></td>
