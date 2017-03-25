@@ -13,7 +13,6 @@
 
 package me.fumba.stravafriends.common;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -27,8 +26,8 @@ public class StravaConnectPropertyFile implements ApplicationConstants {
 		if (inputStream != null) {
 			prop.load(inputStream);
 		} else {
-			throw new FileNotFoundException(
-					"Property file '" + STRAVA_CONFIG_PROPERTIES + "' not found in the classpath");
+			System.err.println("Property file '" + STRAVA_CONFIG_PROPERTIES + "' not found in the classpath");
+			return System.getenv(key);
 		}
 		return prop.getProperty(key);
 	}

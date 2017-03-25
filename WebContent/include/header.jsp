@@ -6,24 +6,24 @@
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script
-	src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+	src="http://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 
 <script
-	src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+	src="http://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
 
 <script
-	src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
+	src="http://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
 
-<script src="https://code.angularjs.org/1.2.9/angular.min.js"></script>
+<script src="http://code.angularjs.org/1.2.9/angular.min.js"></script>
 
 <link rel="stylesheet" href="assets/css/style.css">
 
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="http://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
 <script>
 	(function(i, s, o, g, r, a, m) {
@@ -36,7 +36,7 @@
 		a.src = g;
 		m.parentNode.insertBefore(a, m)
 	})(window, document, 'script',
-			'https://www.google-analytics.com/analytics.js', 'ga');
+			'http://www.google-analytics.com/analytics.js', 'ga');
 
 	ga('create', 'UA-63691460-3', 'auto');
 	ga('send', 'pageview');
