@@ -1,1 +1,1 @@
-web:    java
+web:
