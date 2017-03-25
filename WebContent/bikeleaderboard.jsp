@@ -46,7 +46,7 @@
 								src='<s:property value="value.athlete.profile" />' alt=""></td>
 
 							<td><a
-								href='https://www.strava.com/athletes/<s:property value="value.athlete.id"/>'
+								href='http://www.strava.com/athletes/<s:property value="value.athlete.id"/>'
 								target="_blank">View profile on STRAVA. </a></td>
 						</tr>
 					</s:iterator>
