@@ -1,6 +1,6 @@
 # stravafriends
 
-Add stravaconfig.properties to folder src/resources with the following strava API values specified:
+Add stravaconfig.properties to folder /resources with the following strava API values specified:
 	
 ~~~~
 applicationClientId= ""
