@@ -10,4 +10,4 @@
 			<c:param name="code"> ${session.code} </c:param>
 		</c:redirect>
 	</c:if>
-</c:if>
+</c:if> 
