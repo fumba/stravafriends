@@ -28,7 +28,7 @@ public class LoadApplicationAttributesAction extends ActionSupport implements Ap
 	@Action(value = "loadApplicationAttributes")
 	public void loadApplicationAttributes() throws IOException {
 		Map<String, Object> attibutes = ActionContext.getContext().getApplication();
-		attibutes.put(STRAVA_APP_AUTHORIZATION_URL, this.buildAuthURL());
+		attibutes.put(STRAVA_APP_AUTHORIZATION_URL, this.buildAuthURL()); 
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class LoadApplicationAttributesAction extends ActionSupport implements Ap
 		}
 
 		// Strava API scopes:
-		// comma delimited string of ‘view_private’ and/or ‘write’, leave blank
+		// comma delimited string of ï¿½view_privateï¿½ and/or ï¿½writeï¿½, leave blank
 		// for read-only permissions.
 		url.append("&scope=view_private");
 
